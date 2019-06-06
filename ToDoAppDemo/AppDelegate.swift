@@ -8,6 +8,15 @@
 
 import UIKit
 import CoreData
+import Firebase
+
+enum Environment : String{
+    case prod = "prod"
+    case dev = "dev"
+    case none = "none"
+}
+
+var environment : Environment = .none
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        #if DEVELOPMENT
+        environment = .dev
+        #else
+        environment = .prod
+        #endif
+        
+        print("Build Type : \(environment.rawValue)")
+        FirebaseApp.configure()
         return true
     }
 
@@ -44,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -91,3 +110,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let context = appDelegate.persistentContainer.viewContext
