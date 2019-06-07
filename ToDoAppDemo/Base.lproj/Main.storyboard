@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="135" id="QUS-Ki-47R" customClass="TaskCell" customModule="ToDoAppDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="135" id="QUS-Ki-47R" customClass="TaskCell" customModule="ToDoAppDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QUS-Ki-47R" id="Ylf-Yj-thP">
@@ -192,7 +192,7 @@
                                         <rect key="frame" x="0.0" y="38.5" width="344" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="organization-title"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFJ-LG-QH8">
                                         <rect key="frame" x="0.0" y="86.5" width="127" height="20.5"/>
@@ -201,14 +201,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Task Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oVs-Ac-ss8">
-                                        <rect key="frame" x="0.0" y="125" width="333" height="66"/>
+                                        <rect key="frame" x="0.0" y="125" width="344" height="66"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="66" id="gLU-KD-Vbn"/>
                                         </constraints>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Date Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q82-EK-0Ak">
                                         <rect key="frame" x="0.0" y="209" width="117.5" height="20.5"/>
@@ -228,6 +228,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="OdR-Wt-Amv" secondAttribute="trailing" constant="10" id="0HO-Ut-22c"/>
+                                    <constraint firstAttribute="trailing" secondItem="oVs-Ac-ss8" secondAttribute="trailing" constant="10" id="HE9-BH-gA2"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -242,8 +243,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DHo-wd-oE8"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Add Task" id="H85-uK-NXy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="UIY-Pd-TpB">
+                            <connections>
+                                <action selector="deleteTaskBarButtonAction:" destination="7Dq-gI-3cr" id="Np7-JG-yUB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="lW6-IS-V1d" id="iOw-uD-99R"/>
+                        <outlet property="deleteBarButton" destination="UIY-Pd-TpB" id="6WG-Es-Ls6"/>
                         <outlet property="taskDescriptionTextView" destination="oVs-Ac-ss8" id="7Pp-tn-mOV"/>
                         <outlet property="taskTitleTextField" destination="OdR-Wt-Amv" id="Yw6-d7-R1A"/>
                     </connections>

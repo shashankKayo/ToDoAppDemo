@@ -16,7 +16,6 @@ class TaskCell: UITableViewCell {
     
     var task : Task?{
         didSet{
-            
             taskTitleLbl.text = task?.taskTitle
             taskDescLbl.text = task?.taskDescription
         }

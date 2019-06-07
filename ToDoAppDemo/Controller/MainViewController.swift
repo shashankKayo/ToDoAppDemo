@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class MainViewController: UIViewController {
     
@@ -25,6 +26,64 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         //generatedTestData()
         attemptFetch()
+        fetchDataFromFirestore()
+    }
+    
+    func fetchDataFromFirestore(){
+        
+        FirestoreReferenceManager.root.collection(FirebaseKeys.CollectionPath.tasks).getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    if let localData = self.controller.sections?.first?.objects{
+                        if localData.isEmpty{
+                            let taskDetailsDict = document.data()
+                            let task = Task(context: context)
+                            task.taskId = document.documentID
+                            if let taskTitle = taskDetailsDict[FirebaseKeys.DocumentKeys.taskTitle] as? String{
+                                task.taskTitle = taskTitle
+                            }
+                            if let taskDescription = taskDetailsDict[FirebaseKeys.DocumentKeys.taskDescription] as? String{
+                                task.taskDescription = taskDescription
+                            }
+                            appDelegate.saveContext()
+                        }else{
+                            if let tasks = localData as? [Task]{
+                                if !tasks.contains(where: {$0.taskId == document.documentID}){
+                                    let taskDetailsDict = document.data()
+                                    let task = Task(context: context)
+                                    task.taskId = document.documentID
+                                    if let taskTitle = taskDetailsDict[FirebaseKeys.DocumentKeys.taskTitle] as? String{
+                                        task.taskTitle = taskTitle
+                                    }
+                                    if let taskDescription = taskDetailsDict[FirebaseKeys.DocumentKeys.taskDescription] as? String{
+                                        task.taskDescription = taskDescription
+                                    }
+                                    appDelegate.saveContext()
+                                }
+                            }
+                        }
+                    }
+                  
+//                    if let tasks = localData?.objects as? [Task]{
+//                        if tasks.contains(where: { $0.taskId != document.documentID}){
+//                            let taskDetailsDict = document.data()
+//                            let task = Task(context: context)
+//                            task.taskId = document.documentID
+//                            if let taskTitle = taskDetailsDict[FirebaseKeys.DocumentKeys.taskTitle] as? String{
+//                                task.taskTitle = taskTitle
+//                            }
+//                            if let taskDescription = taskDetailsDict[FirebaseKeys.DocumentKeys.taskDescription] as? String{
+//                                task.taskDescription = taskDescription
+//                            }
+//                            appDelegate.saveContext()
+//                        }
+//                    }
+                }
+            }
+        }
     }
     
     func attemptFetch(){
@@ -41,42 +100,6 @@ class MainViewController: UIViewController {
             let error = error as NSError
             print("\(error)")
         }
-    }
-    
-    func generatedTestData(){
-        
-        let task1 = Task(context: context)
-        task1.taskTitle = "Swift Tutorial"
-        task1.taskDescription = "Learning the latest version of swift because it released in the current WWDC. And the latest version of Xcode in 11 which is released now."
-        taskModel.append(task1)
-        
-        let task2 = Task(context: context)
-        task2.taskTitle = "Swift Tutorial"
-        task2.taskDescription = "Learning the latest version of swift because it released in the current WWDC. And the latest version of Xcode in 11 which is released now."
-         taskModel.append(task2)
-        
-        let task3 = Task(context: context)
-        task3.taskTitle = "Swift Tutorial"
-        task3.taskDescription = "Learning the latest version of swift because it released in the current WWDC. And the latest version of Xcode in 11 which is released now."
-         taskModel.append(task3)
-        
-        let task4 = Task(context: context)
-        task4.taskTitle = "Swift Tutorial"
-        task4.taskDescription = "Learning the latest version of swift because it released in the current WWDC. And the latest version of Xcode in 11 which is released now."
-        taskModel.append(task4)
-        
-        let task5 = Task(context: context)
-        task5.taskTitle = "Swift Tutorial"
-        task5.taskDescription = "Learning the latest version of swift because it released in the current WWDC. And the latest version of Xcode in 11 which is released now."
-        taskModel.append(task5)
-        
-        let task6 = Task(context: context)
-        task6.taskTitle = "Swift Tutorial"
-        task6.taskDescription = "Learning the latest version of swift because it released in the current WWDC. And the latest version of Xcode in 11 which is released now."
-        taskModel.append(task6)
-        
-        appDelegate.saveContext()
-        
     }
     
     @IBAction func addTaskBtnPressed(_ sender: UIBarButtonItem) {
@@ -131,10 +154,19 @@ extension MainViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let objects = controller.fetchedObjects, objects.count > 0{
+            let item = objects[indexPath.row]
+            performSegue(withIdentifier: StoryboardId.mainVCToAddVCSegue, sender: item)
+        }
+    }
 }
 
 
 extension MainViewController : NSFetchedResultsControllerDelegate{
+    
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         taskTableView.beginUpdates()
     }
@@ -145,19 +177,26 @@ extension MainViewController : NSFetchedResultsControllerDelegate{
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
+        guard let task = anObject as? Task else{
+            print("an Object is not of type tasks")
+            return
+        }
         switch type {
         case .insert:
             if let indexPath = newIndexPath{
+                print("Insertion takes place")
                 taskTableView.insertRows(at: [indexPath], with: .fade)
             }
             break
         case .delete:
             if let indexPath = indexPath{
+                print("Deletion takes place")
                 taskTableView.deleteRows(at: [indexPath], with: .fade)
             }
             break
         case .update:
             if let indexPath = indexPath{
+                print("Updation takes place")
                 if let cell = taskTableView.cellForRow(at: indexPath) as? TaskCell{
                     configureCell(cell: cell, indexPath: indexPath)
                 }

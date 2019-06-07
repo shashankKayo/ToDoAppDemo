@@ -7,8 +7,7 @@ target 'ToDoAppDemo' do
 
   # Pods for ToDoAppDemo
 pod 'Firebase/Core'
-
-
+pod 'Firebase/Firestore'
 
 end
 
@@ -18,6 +17,7 @@ target 'ToDoAppDemoDev' do
 
   # Pods for ToDoAppDemoDev
 pod 'Firebase/Core'
+pod 'Firebase/Firestore'
 
 
 
