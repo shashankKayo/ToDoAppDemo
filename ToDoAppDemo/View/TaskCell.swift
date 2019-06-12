@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ Description : This are custom created cell so we can design it based on our requirements.
+ */
+
 class TaskCell: UITableViewCell {
 
     @IBOutlet weak var taskDescLbl: UILabel!

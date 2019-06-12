@@ -10,12 +10,21 @@ import UIKit
 import CoreData
 import Firebase
 
+
+/*
+ Created a enum type variable which determine whether the build is for production or development purpose.
+ We designed the Firestore structure in that way we don't need to change any thing for creating builds whether production or development.
+ */
 enum Environment : String{
     case prod = "prod"
     case dev = "dev"
     case none = "none"
 }
 
+/*
+ Created a enum type variable which determine whether the build is for production or development purpose.
+ We designed the Firestore structure in that way we don't need to change any thing for creating builds whether production or development.
+ */
 var environment : Environment = .none
 
 @UIApplicationMain

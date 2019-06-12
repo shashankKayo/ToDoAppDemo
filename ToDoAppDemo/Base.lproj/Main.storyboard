@@ -79,51 +79,6 @@
                                             <outlet property="taskTitleLbl" destination="3Y1-sV-Qya" id="leR-8Y-nUd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="header" rowHeight="65" id="rWn-jh-sjt" customClass="HeaderViewCell" customModule="ToDoAppDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="163" width="414" height="65"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rWn-jh-sjt" id="SJr-ee-1YO">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="AQY-H0-Vei">
-                                                    <rect key="frame" x="15" y="15" width="384" height="35"/>
-                                                    <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="add task..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Csp-eo-egE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="269" height="35"/>
-                                                            <nil key="textColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
-                                                        </textField>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPj-Kb-S62">
-                                                            <rect key="frame" x="284" y="0.0" width="100" height="35"/>
-                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="100" id="I16-65-2cP"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                            <state key="normal" title="add task">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Csp-eo-egE" firstAttribute="height" secondItem="AQY-H0-Vei" secondAttribute="height" id="Va3-0V-weJ"/>
-                                                    </constraints>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="AQY-H0-Vei" secondAttribute="trailing" constant="15" id="80O-kk-32g"/>
-                                                <constraint firstItem="AQY-H0-Vei" firstAttribute="leading" secondItem="SJr-ee-1YO" secondAttribute="leading" constant="15" id="CCE-Aj-LsL"/>
-                                                <constraint firstItem="AQY-H0-Vei" firstAttribute="top" secondItem="SJr-ee-1YO" secondAttribute="top" constant="15" id="O0P-iR-1Au"/>
-                                                <constraint firstAttribute="bottom" secondItem="AQY-H0-Vei" secondAttribute="bottom" constant="15" id="su8-PE-tHW"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="addTaskBtn" destination="nPj-Kb-S62" id="TYk-k9-hLA"/>
-                                            <outlet property="addTaskTextField" destination="Csp-eo-egE" id="Uyf-bc-l2a"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="hVL-7J-WiI"/>

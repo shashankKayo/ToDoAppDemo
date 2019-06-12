@@ -24,13 +24,14 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //generatedTestData()
         attemptFetch()
         fetchDataFromFirestore()
     }
     
+    /*
+     Description : This function is used to download the content from datbase in local database if required.
+     */
     func fetchDataFromFirestore(){
-        
         FirestoreReferenceManager.root.collection(FirebaseKeys.CollectionPath.tasks).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -66,26 +67,15 @@ class MainViewController: UIViewController {
                             }
                         }
                     }
-                  
-//                    if let tasks = localData?.objects as? [Task]{
-//                        if tasks.contains(where: { $0.taskId != document.documentID}){
-//                            let taskDetailsDict = document.data()
-//                            let task = Task(context: context)
-//                            task.taskId = document.documentID
-//                            if let taskTitle = taskDetailsDict[FirebaseKeys.DocumentKeys.taskTitle] as? String{
-//                                task.taskTitle = taskTitle
-//                            }
-//                            if let taskDescription = taskDetailsDict[FirebaseKeys.DocumentKeys.taskDescription] as? String{
-//                                task.taskDescription = taskDescription
-//                            }
-//                            appDelegate.saveContext()
-//                        }
-//                    }
                 }
             }
         }
     }
     
+    
+    /*
+     Description: Function display the local datbase content 
+     */
     func attemptFetch(){
         let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         let titleSort = NSSortDescriptor(key: "taskTitle", ascending: true)
@@ -166,7 +156,6 @@ extension MainViewController : UITableViewDelegate{
 
 extension MainViewController : NSFetchedResultsControllerDelegate{
     
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         taskTableView.beginUpdates()
     }
@@ -177,7 +166,7 @@ extension MainViewController : NSFetchedResultsControllerDelegate{
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        guard let task = anObject as? Task else{
+        guard let _ = anObject as? Task else{
             print("an Object is not of type tasks")
             return
         }

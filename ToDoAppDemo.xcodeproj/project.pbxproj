@@ -23,8 +23,6 @@
 		C59D427322A90C820043F5D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C59D427122A90C820043F5D9 /* GoogleService-Info.plist */; };
 		C59D427522A91D450043F5D9 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D427422A91D450043F5D9 /* TaskCell.swift */; };
 		C59D427622A91D450043F5D9 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D427422A91D450043F5D9 /* TaskCell.swift */; };
-		C59D427822A91D5D0043F5D9 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D427722A91D5D0043F5D9 /* HeaderViewCell.swift */; };
-		C59D427922A91D5D0043F5D9 /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D427722A91D5D0043F5D9 /* HeaderViewCell.swift */; };
 		C59D428A22A935E40043F5D9 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D428922A935E40043F5D9 /* TaskViewController.swift */; };
 		C59D428B22A935E40043F5D9 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D428922A935E40043F5D9 /* TaskViewController.swift */; };
 		C59D428D22AA42D40043F5D9 /* FirebaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D428C22AA42D40043F5D9 /* FirebaseKeys.swift */; };
@@ -57,7 +55,6 @@
 		C59D426B22A8F84F0043F5D9 /* ToDoAppDemoDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ToDoAppDemoDev-Info.plist"; path = "/Users/shashank.panwar/Desktop/ToDoAppDemo/ToDoAppDemoDev-Info.plist"; sourceTree = "<absolute>"; };
 		C59D427122A90C820043F5D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C59D427422A91D450043F5D9 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
-		C59D427722A91D5D0043F5D9 /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		C59D428922A935E40043F5D9 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		C59D428C22AA42D40043F5D9 /* FirebaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseKeys.swift; sourceTree = "<group>"; };
 		C59D428F22AA43120043F5D9 /* FirestoreReferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreReferenceManager.swift; sourceTree = "<group>"; };
@@ -155,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				C59D427422A91D450043F5D9 /* TaskCell.swift */,
-				C59D427722A91D5D0043F5D9 /* HeaderViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -411,7 +407,6 @@
 				C59D427522A91D450043F5D9 /* TaskCell.swift in Sources */,
 				C59D429422AA645D0043F5D9 /* Task+CoreDataClass.swift in Sources */,
 				C59D429022AA43120043F5D9 /* FirestoreReferenceManager.swift in Sources */,
-				C59D427822A91D5D0043F5D9 /* HeaderViewCell.swift in Sources */,
 				C59D425122A8F8180043F5D9 /* ToDoAppDemo.xcdatamodeld in Sources */,
 				C59D428D22AA42D40043F5D9 /* FirebaseKeys.swift in Sources */,
 				C59D424B22A8F8180043F5D9 /* MainViewController.swift in Sources */,
@@ -428,7 +423,6 @@
 				C59D427622A91D450043F5D9 /* TaskCell.swift in Sources */,
 				C59D429522AA645D0043F5D9 /* Task+CoreDataClass.swift in Sources */,
 				C59D429122AA43120043F5D9 /* FirestoreReferenceManager.swift in Sources */,
-				C59D427922A91D5D0043F5D9 /* HeaderViewCell.swift in Sources */,
 				C59D425F22A8F84F0043F5D9 /* ToDoAppDemo.xcdatamodeld in Sources */,
 				C59D428E22AA42D40043F5D9 /* FirebaseKeys.swift in Sources */,
 				C59D426022A8F84F0043F5D9 /* MainViewController.swift in Sources */,

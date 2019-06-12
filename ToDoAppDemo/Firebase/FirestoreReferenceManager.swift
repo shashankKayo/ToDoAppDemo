@@ -11,5 +11,9 @@ import Firebase
 
 struct FirestoreReferenceManager{
     static let db = Firestore.firestore()
+    /*
+     this variable(root) automatically changes the root address based on the prod. and dev. target selected.
+     
+     */
     static let root = db.collection(environment.rawValue).document(environment.rawValue)
 }

@@ -32,6 +32,7 @@ class TaskViewController: UIViewController {
     
     private var isTaskInfoUpdated = false
     private var isTaskInfoCompletedFilled = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,13 @@ class TaskViewController: UIViewController {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    /*
+     Description: Function set the initial UI based on the available data.
+     */
     func setUpInitialUI(){
         taskTitleTextField.delegate = self
         taskDescriptionTextView.delegate = self
@@ -54,6 +62,10 @@ class TaskViewController: UIViewController {
         }
     }
     
+    
+    /*
+     Description: Function save the data on local database as well as on Firestore.
+     */
     @IBAction func saveTaskBtnPressed(_ sender: UIButton) {
         view.endEditing(true)
         guard let taskTitle = taskTitleTextField.text?.trimmingCharacters(in: .whitespaces) else {return}
@@ -72,24 +84,21 @@ class TaskViewController: UIViewController {
             appDelegate.saveContext()
             updateDataIntoFirestore(task: selectedTask!)
             print("Successfully saved on local database.")
-//
         }else{
             print("Some Error while Saving Data")
         }
     }
     
+    
     @IBAction func deleteTaskBarButtonAction(_ sender: UIBarButtonItem) {
         if let item = selectedTask{
-//            context.delete(item)
-//            appDelegate.saveContext()
             deleteDataFromFirestore(task: item)
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
+    /*
+     Description: Function checks whether mendatory filled(e.g. task Name and task Description) is completely filled or not.
+     */
     func isRequiredFieldFilled() -> Bool{
         guard let selectedTask = taskDetail else {return false}
         guard let _ = selectedTask.taskName else {
@@ -107,6 +116,10 @@ class TaskViewController: UIViewController {
         return true
     }
     
+    
+    /*
+     Description : Save the data into Firestore datbase.
+     */
     func updateDataIntoFirestore(task : Task){
         FirestoreReferenceManager.root.collection(FirebaseKeys.CollectionPath.tasks).document(task.taskId!)
             .setData([FirebaseKeys.DocumentKeys.taskId: task.taskId!,
@@ -122,6 +135,10 @@ class TaskViewController: UIViewController {
         }
     }
     
+    
+    /*
+     Description: Function first delete data from Firestore. After successfully deleted data from firestore then delete from the local database.
+     */
     func deleteDataFromFirestore(task : Task){
         FirestoreReferenceManager.root.collection(FirebaseKeys.CollectionPath.tasks).document(task.taskId!).delete { [weak self](error) in
             guard let this = self else {return}
@@ -137,6 +154,7 @@ class TaskViewController: UIViewController {
     }
 
 }
+
 
 extension TaskViewController : UITextViewDelegate{
     
@@ -162,6 +180,7 @@ extension TaskViewController : UITextViewDelegate{
         return true
     }
 }
+
 
 
 extension TaskViewController : UITextFieldDelegate{
